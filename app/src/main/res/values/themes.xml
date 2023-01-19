@@ -2,11 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.SpeisekarteApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/SI_DeepPurple</item>
+        <item name="colorPrimary">#4d91ff</item>
         <item name="colorPrimaryVariant">@color/backgroundD1</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/SI_DeepPurple</item>
+        <item name="colorSecondary">#d13670</item>
         <item name="colorSecondaryVariant">@color/SI_Purple</item>
         <item name="colorOnSecondary">@color/SI_Grey</item>
         <!-- Status bar color. -->
@@ -14,3 +14,4 @@
         <!-- Customize your theme here. -->
     </style>
 </resources>
+

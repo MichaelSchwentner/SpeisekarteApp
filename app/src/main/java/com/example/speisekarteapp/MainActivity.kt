@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         // Lege hier die Binding Variable an
         // TODO Schreibe hier deinen Code
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        if (savedInstanceState != null){
+            drink1.count = savedInstanceState.getInt("Drink1")
+            drink2.count = savedInstanceState.getInt("Drink2")
+            drink3.count = savedInstanceState.getInt("Drink3")
+            bill = savedInstanceState.getFloat("Bill")
+        }
         // Setze hier die Namen, Preise und Count in der View über die binding Variable
         // TODO Schreibe hier deinen Code
         binding.drink1Name.text = drink1.name
@@ -41,13 +48,15 @@ class MainActivity : AppCompatActivity() {
         binding.drink1Count.text = drink1.count.toString()
         binding.drink2Count.text = drink2.count.toString()
         binding.drink3Count.text = drink3.count.toString()
+        binding.totalPrice.text = ("%.2f".format(bill)).toString()
+        //binding.totalPrice.text = bill.toString()
         // implementiere einen onClicklistener für das Kaffee Icon
         // TODO Schreibe hier deinen Code
         binding.drink1Button.setOnClickListener {
         try {
+            addToBill(drink1.price)
             drink1.count++
             binding.drink1Count.text = drink1.count.toString()
-            addToBill(drink1.price)
             binding.totalPrice.text = "%.2f".format(bill)
         }catch (e: Exception){
             Toast.makeText(this,"Problem", Toast.LENGTH_LONG)
@@ -57,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         // TODO Schreibe hier deinen Code
         binding.drink2Button.setOnClickListener {
             try {
+                addToBill(drink2.price)
                 drink2.count++
                 binding.drink2Count.text = drink2.count.toString()
-                addToBill(drink2.price)
                 binding.totalPrice.text = "%.2f".format(bill)
             }catch (e: Exception){
                 Toast.makeText(this,"Problem", Toast.LENGTH_LONG)
@@ -69,9 +78,9 @@ class MainActivity : AppCompatActivity() {
         // TODO Schreibe hier deinen Code
         binding.drink3Button.setOnClickListener {
             try {
+                addToBill(drink3.price)
                 drink3.count++
                 binding.drink3Count.text = drink3.count.toString()
-                addToBill(drink3.price)
                 binding.totalPrice.text = "%.2f".format(bill)
             }catch (e: Exception){
                 Toast.makeText(this,"Problem", Toast.LENGTH_LONG)
@@ -102,5 +111,12 @@ class MainActivity : AppCompatActivity() {
             bill += price
             bill = round(bill * 100) / 100
         }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("Drink1", drink1.count)
+        outState.putInt("Drink2", drink2.count)
+        outState.putInt("Drink3", drink3.count)
+        outState.putFloat("Bill", bill)
     }
 }
